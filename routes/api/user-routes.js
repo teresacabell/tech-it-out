@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     User.findOne({
-        attributes: { exclude: ['password'] }
+        attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
         }
@@ -47,6 +47,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     User.update(req.body, {
+        individualHooks: true,
         where: {
             id: req.params.id
         }
